@@ -1,11 +1,12 @@
 <h1>All Products:</h1>
 
 <% @products.each do |product| %>
-  <a href="/products/<%= product.id %>">Title: <%= product.name %></a>
+  <div class="well"> <a href="/products/<%= product.id %>">Title: <%= product.name %></a>
   <p> Name: <%= product.name %></p>
   <p> Price: <%= product.price %></p>
   <p> Description: <%= product.description %></p>
   <p> Image:
-      <img src="<%= product.image %>" />
+      <img style="width:200px" src="<%= product.image %>" />
       </p>
+  </div>
 <% end %>
