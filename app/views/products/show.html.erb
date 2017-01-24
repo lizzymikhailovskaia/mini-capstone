@@ -1,0 +1,8 @@
+
+ <p> Name: <%= @product.name %></p>
+ <p> Price: <%= @product.price %></p>
+ <p> Description: <%= @product.description %></p>
+ <p> Image: <%= @product.image %></p>
+
+
+ <a data-confirm="Are you sure?" data-method="delete" rel="nofollow" href="/products/<%= @product.id %>">Delete.<a>
