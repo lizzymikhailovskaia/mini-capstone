@@ -1,6 +1,11 @@
 class ProductsController < ApplicationController
     def index
         @products = Product.all
+        sort_attr = params[:sort]
+        sort_order = params[:sort_order] ? params[:sort_order] : 'asc'
+        if sort_attr
+            @products = Product.all.order(sort_attr => sort_order)
+        end
         render "index.html.erb"
     end
 
@@ -35,10 +40,10 @@ class ProductsController < ApplicationController
     end
 
     def destroy
-       product_id = params[:id]
-       product = Product.find_by(id: product_id)
-       product.destroy
-       redirect_to "/products"
+        product_id = params[:id]
+        product = Product.find_by(id: product_id)
+        product.destroy
+        redirect_to "/products"
     end
 
 end
