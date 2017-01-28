@@ -1,13 +1,20 @@
 <h1>All Products:</h1>
-<span><a href="/products?sort=price">Sort by Price</a></span>
-<span><a href="/products?sort=price&sort_order=desc">Sort by Price Descending</a></span>
+<div>
+    <span><a href="/products?sort=price">Sort by Price</a></span>
+    <span><a href="/products?sort=price&sort_order=desc">Sort by Price Descending</a></span>
+</div>
 <% @products.each do |product| %>
-  <div class="well"> <a href="/products/<%= product.id %>">Title: <%= product.name %></a>
-  <p> Name: <%= product.name %></p>
-  <p> Price: <%= product.price %></p>
-  <p> Description: <%= product.description %></p>
-  <p> Image:
-      <img style="width:200px" src="<%= product.image %>" />
-      </p>
-  </div>
+  <div class="col-md-4">
+      <div class="well">
+           <a href="/products/<%= product.id %>">Title: <%= product.name %></a>
+           <p> Name: <%= product.name %></p>
+           <p> Price: <%= product.price %></p>
+           <p> Description: <%= product.description %></p>
+           <a href="/products/<%= product.id %>">
+              <span class="picture">
+                <img style="width:200px" src="<%= product.image %>" />
+              </span>
+          </a>
+      </div>
+ </div>
 <% end %>
