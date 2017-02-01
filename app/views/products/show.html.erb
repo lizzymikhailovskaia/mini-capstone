@@ -1,8 +1,13 @@
 
+
  <p> Name: <%= @product.name %></p>
  <p> Price: <%= @product.price %></p>
  <p> Description: <%= @product.description %></p>
- <p> Image: <%= @product.image %></p>
+ <% @product.images.each do |image| %>
+      <span class="picture">
+       <img style="width:200px" src="<%= image.url %>" />
+     </span>
+  <% end %>
  <p> <%= @product.sale_message %></p>
  <p>Tax: <%= number_to_currency(@product.tax) %> </p>
  <p> Total: <%= number_to_currency(@product.total) %> </p>
