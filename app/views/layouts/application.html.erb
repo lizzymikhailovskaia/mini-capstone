@@ -27,8 +27,15 @@
             <!-- /.container-fluid -->
         </nav>
 
+        <% if logged_in? %>
+          <div class="container">
+            Welcome, <%= current_user.name %>
+          </div>
+        <% end %>
+
         <%flash.each do |key, message| %>
-            <div class="alert alert-success">
+            <% warning_style = ("info" if key == 'message') || key %>
+            <div class="alert alert-<%=warning_style%>">
                 <%= message %>
             </div>
         <% end %>

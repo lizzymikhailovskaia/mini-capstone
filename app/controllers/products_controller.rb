@@ -6,7 +6,6 @@ class ProductsController < ApplicationController
         if sort_attr
             @products = Product.all.order(sort_attr => sort_order)
         end
-
     end
 
     def new

@@ -12,4 +12,15 @@ Rails.application.routes.draw do
   get '/images/new' => 'images#new'
   post '/images' => 'images#create'
 
+  get "/users" => "users#new"
+	post "/users" => "users#create"
+
+  get "/login" => "sessions#new"
+	post "/login" => "sessions#create"
+
+	get "/logout" => "sessions#destroy"
+
+  post '/orders' =>'orders#create'
+  get '/orders/:id' =>'orders#show'
+
 end

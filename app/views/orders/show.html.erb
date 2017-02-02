@@ -1,0 +1,13 @@
+<h2>Order Confirmation:</h2>
+
+<p>Order Id: <%= @order.id %></p>
+<p>Quantity: <%= @order.quantity %></p>
+<p>User Name: <%= @order.user.name %></p>
+<p>Product Name: <%= @order.product.name %></p>
+<p>Subtotal: <%= @order.subtotal %></p>
+<p>Tax: <%= @order.tax %></p>
+<p>Total: <%= @order.total %></p>
+<p>Purchased at: <%= @order.created_at %></p>
+<div class="frame">
+  <img class="picture" src="<%= @order.product.images.first.url %>" alt="">
+</div>

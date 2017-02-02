@@ -4,8 +4,8 @@
  <p> Price: <%= @product.price %></p>
  <p> Description: <%= @product.description %></p>
  <% @product.images.each do |image| %>
-      <span class="picture">
-       <img style="width:200px" src="<%= image.url %>" />
+      <span class="frame">
+       <img class="picture" src="<%= image.url %>" />
      </span>
   <% end %>
  <p> <%= @product.sale_message %></p>
@@ -14,3 +14,14 @@
 
 <a class="btn btn-default"data-confirm="Are you sure?" data-method="delete" rel="nofollow" href="/products/<%= @product.id %>">Delete</a>
 <a class="btn btn-default" href="/products/<%=@product.id%>/edit"> Edit</a>
+
+
+
+<%= form_tag "/orders/", method: :post do %>
+     <div class="form-group">
+         <%=label_tag :quantity %>
+         <%= text_field_tag :quantity %>
+         <%= hidden_field_tag :product_id, @product.id%>
+         <%= submit_tag "Byu Now!"%>
+      </div>
+<% end %>

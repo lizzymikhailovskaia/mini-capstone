@@ -5,9 +5,12 @@ body {
   background-image: url('asanoha-400px.png');
 }
 
+.frame {
+  display: inline-block;
+  width: 200px;
+  height: 250px;
+  overflow: hidden;
+}
 .picture {
-    display: inline-block;
-    width: 200px;
-    height: 250px;
-    overflow: hidden;
+  width: 200px;
 }
