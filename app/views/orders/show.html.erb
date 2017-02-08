@@ -1,13 +1,14 @@
 <h2>Order Confirmation:</h2>
 
+
 <p>Order Id: <%= @order.id %></p>
-<p>Quantity: <%= @order.quantity %></p>
 <p>User Name: <%= @order.user.name %></p>
-<p>Product Name: <%= @order.product.name %></p>
-<p>Subtotal: <%= @order.subtotal %></p>
-<p>Tax: <%= @order.tax %></p>
-<p>Total: <%= @order.total %></p>
+<p>Subtotal: <%= number_to_currency(@order.subtotal) %></p>
+<p>Tax: <%= number_to_currency(@order.tax) %></p>
+<p>Total: <%= number_to_currency(@order.total) %></p>
 <p>Purchased at: <%= @order.created_at %></p>
-<div class="frame">
-  <img class="picture" src="<%= @order.product.images.first.url %>" alt="">
-</div>
+
+<% @order.carted_products.each do |carted_product| %>
+  <h5><%= carted_product.product.name %></h5>
+  <h6>Quantity: <%= carted_product.quantity %></h6>
+<% end %>

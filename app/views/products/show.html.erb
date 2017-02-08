@@ -17,11 +17,11 @@
 
 
 
-<%= form_tag "/orders/", method: :post do %>
+<%= form_tag "/carted_products/", method: :post do %>
      <div class="form-group">
          <%=label_tag :quantity %>
          <%= text_field_tag :quantity %>
          <%= hidden_field_tag :product_id, @product.id%>
-         <%= submit_tag "Byu Now!"%>
+         <%= submit_tag "Add to Cart!"%>
       </div>
 <% end %>

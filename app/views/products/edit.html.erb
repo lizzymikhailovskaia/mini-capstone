@@ -1,18 +1,52 @@
-<h1>Edit Product:</h1>
-<%= form_tag "/products/#{@product.id}", method: :patch do %>
-  <div>
-     <div class="form-group">
-         <label>Title:</label>
-         <input class="form-control" type="text" name="name" value="<%=@product.name%>">
-     </div>
-     <div class="form-group">
-         <label>Price:</label>
-         <input class="form-control" type="text" name="price" value="<%=@product.price%>">
-     </div>
-     <div class="form-group">
-         <label>Description:</label>
-         <input class="form-control" type="text" name="description" value="<%=@product.description%>">
+
+<section>
+  <h1>Edit Product:</h1>
+  <div class="row">
+
+    <% if @product && @product.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+        <ul>
+        <% @product.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="col-sm-8 col-sm-offset-2">
+      <div class="product_single">
+        <h1>Edit Product</h1>
+
+        <%= form_tag "/products/#{@product.id}", method: :patch do %>
+
+          <div>
+            <%= label_tag :name %>
+            <%= text_field_tag :name, @product.name %>
+          </div>
+
+          <div>
+            <%= label_tag :price %>
+            <%= text_field_tag :price, @product.price %>
+          </div>
+
+
+
+          <div>
+            <%= label_tag :description %>
+            <%= text_field_tag :description, @product.description %>
+          </div>
+
+          <div>
+            <%= label_tag :supplier_id %>
+            <%= text_field_tag :supplier_id, @product.supplier_id %>
+          </div>
+
+          <%= submit_tag "Update Product" %>
+
+        <% end %>
+      </div>
     </div>
-    
-  <input class="btn btn-primary" type="submit" value="Edit product">
-<% end %>
+  </div>
+</section>

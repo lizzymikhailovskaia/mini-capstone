@@ -1,17 +1,53 @@
-<h1>New Product:</h1>
-<%= form_tag "/products", method: :post do %>
-  <div>
-    Name: <input type="text" name="name">
-  </div>
 
-  <div>
-    Price: <input type="text" name="price">
-  </div>
-  <div>
-    Description: <input type="text" name="description">
-  </div>
-  <div>
-    Directions: <input type="text" name="directions">
-  </div>
-  <input type="submit" value="Create product">
-<% end %>
+<section>
+     <div class="row">
+
+     <% if @product && @product.errors.any? %>
+       <div id="error_explanation">
+         <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+         <ul>
+         <% @product.errors.full_messages.each do |msg| %>
+           <li><%= msg %></li>
+         <% end %>
+         </ul>
+       </div>
+     <% end %>
+
+       <div class="col-sm-8 col-sm-offset-2">
+         <div class="product_single">
+           <h1>Create a new  product:</h1>
+
+           <%= form_tag '/products', method: :post do %>
+
+             <div>
+               <%= label_tag :name %>
+               <%= text_field_tag :name %>
+             </div>
+
+             <div>
+               <%= label_tag :price %>
+               <%= text_field_tag :price %>
+             </div>
+
+             <div>
+               <%= label_tag :description %>
+               <%= text_field_tag :description %>
+             </div>
+
+             <div>
+               <%= label_tag :supplier %>
+               <%= collection_select :supplier, :supplier_id, Supplier.all, :id, :name %>
+             </div>
+
+             <div>
+               <%= label_tag :image %>
+               <%= text_field_tag :image %>
+             </div>
+
+             <%= submit_tag "Process New products" %>
+           <% end %>
+         </div>
+       </div>
+     </div>
+   </section>

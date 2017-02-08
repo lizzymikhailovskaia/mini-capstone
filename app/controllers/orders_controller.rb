@@ -1,22 +1,24 @@
 class OrdersController < ApplicationController
-  def create
-    product_id = params[:product_id]
-    product = Product.find_by(id:product_id)
-    quantity = params[:quantity]
-    order = Order.create(
-      user_id: current_user.id,
-      quantity: quantity,
-      product_id: product_id,
-      subtotal: (product.price * quantity.to_f),
-      tax: (product.tax * quantity.to_f),
-      total: (product.total * quantity.to_f)
-    )
 
-    flash[:message] = "Your order has been successfully created!"
-    redirect_to "/orders/#{order.id}"
-  end
+    before_action :authenticate_user!
+    #user_id, #subtotal, #tax, #total
+    def create
+      carted_products = current_user.carted_products.where(carted: "carted")
 
-  def show
-    @order = Order.find_by(id: params[:id])
+      order = Order.create(user_id: current_user.id)
+
+      carted_products.update_all(carted: "purchased", order_id: order.id)
+
+      order.calculate_totals
+
+      flash[:success] = "Order successfully created"
+      redirect_to "/orders/#{order.id}"
+    end
+
+    def show
+      @order = Order.find_by(id: params[:id])
+      if @order.user_id != current_user.id
+        redirect_to '/'
+      end
+    end
   end
-end
